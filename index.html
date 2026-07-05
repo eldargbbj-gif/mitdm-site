@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIT DM | GTA V RP Server</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b0c10;
+            color: #c5c6c7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            text-shadow: 0 0 10px #00f2fe, 0 0 20px #00f2fe, 0 0 40px #00f2fe;
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #00f2fe, 0 0 20px #00f2fe, 0 0 30px #00f2fe;
+            }
+            to {
+                text-shadow: 0 0 15px #4facfe, 0 0 25px #4facfe, 0 0 50px #4facfe;
+            }
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            color: #66fcf1;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(102, 252, 241, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+        }
+
+        .card h2 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #00f2fe, #4facfe);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #66fcf1;
+            border: 2px solid #66fcf1;
+        }
+
+        .btn-secondary:hover {
+            background: #66fcf1;
+            color: #000;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: #45f3ff;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Тот самый светящийся логотип -->
+        <h1>Mit DM</h1>
+        <p class="subtitle">RAGE:MP GTA V Project</p>
+
+        <div class="card">
+            <h2>Добро пожаловать на лучший DM сервер</h2>
+            <p>Уникальное комьюнити, отзывчивая администрация и постоянные капты/замесы. Прокачай свой скилл стрельбы вместе с нами!</p>
+        </div>
+
+        <!-- Кнопки управления -->
+        <a href="#" class="btn btn-primary" id="copy-btn" onclick="copyIP()">Скопировать IP сервера</a>
+        <a href="#donate" class="btn btn-secondary">Магазин Доната</a>
+        <a href="https://discord.gg/твой_инвайт" target="_blank" class="btn btn-secondary" style="border-color: #5865F2; color: #5865F2;">Наш Discord</a>
+
+        <footer>
+            &copy; 2026 MIT DM. All rights reserved.
+        </footer>
+    </div>
+
+    <script>
+        function copyIP() {
+            const ip = "mitdm.xyz:22005"; // Замени на реальный IP твоего сервера позже
+            navigator.clipboard.writeText(ip);
+            const btn = document.getElementById('copy-btn');
+            btn.innerText = "IP скопирован!";
+            setTimeout(() => {
+                btn.innerText = "Скопировать IP сервера";
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
