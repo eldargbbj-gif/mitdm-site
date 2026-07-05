@@ -84,14 +84,23 @@
             z-index: 10;
         }
 
+        /* Кастомный переливающийся бренд-логотип */
         .brand {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.8rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #fff 30%, var(--accent-cyan) 100%);
+            background: linear-gradient(90deg, #ffffff, var(--accent-cyan), var(--accent-purple), #ffffff);
+            background-size: 300% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: 2px;
+            animation: textShine 5s linear infinite;
+        }
+
+        /* Анимация бегущего градиента */
+        @keyframes textShine {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
         }
 
         .nav-links {
@@ -146,12 +155,16 @@
             letter-spacing: -1px;
             margin-bottom: 1.5rem;
             text-transform: uppercase;
+            color: #ffffff;
         }
 
+        /* Анимированный перелив названия в заголовке */
         .hero-text h1 span {
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple), var(--accent-cyan));
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: textShine 4s linear infinite;
         }
 
         .hero-text p {
@@ -162,7 +175,7 @@
             max-width: 600px;
         }
 
-        /* Новая ультимативная кнопка Discord */
+        /* Премиальная кнопка Discord */
         .cta-wrapper {
             display: flex;
             gap: 1.5rem;
@@ -195,10 +208,9 @@
 
         .btn-premium-discord i {
             font-size: 1.5rem;
-            animation: spinIcon 6s infinite linear;
         }
 
-        /* Дополнительная карточка статуса рядом */
+        /* Карточка статуса сервера */
         .live-badge {
             display: flex;
             align-items: center;
@@ -291,7 +303,7 @@
             line-height: 1.6;
         }
 
-        /* Адаптивность для мобилок */
+        /* Адаптивность для мобильных телефонов */
         @media (max-width: 968px) {
             .hero {
                 grid-template-columns: 1fr;
@@ -313,7 +325,7 @@
 </head>
 <body>
 
-    <!-- Живой задний фон -->
+    <!-- Живой космический задний фон -->
     <div class="bg-wrapper">
         <div class="nebula nebula-cyan"></div>
         <div class="nebula nebula-purple"></div>
@@ -332,8 +344,8 @@
     <!-- Главный блок -->
     <section class="hero">
         <div class="hero-text">
-            <h1>Премиум<br>Сражения в <span>GTA V</span></h1>
-            <p>Добро пожаловать на MIT DM — ультимативную арену для ценителей динамичного Deathmatch геймплея на платформе RAGE:MP. Идеальная регистрация попаданий, лучшие комьюнити-турниры и топовый контингент.</p>
+            <h1>Премиум<br>Сражения в <span>MIT DM</span></h1>
+            <p>Ультимативная арена для ценителей динамичного Deathmatch геймплея на платформе RAGE:MP. Идеальная регистрация попаданий, лучшие комьюнити-турниры и топовый контингент.</p>
             
             <div class="cta-wrapper">
                 <a href="https://discord.gg/67YCs7BSM5" target="_blank" class="btn-premium-discord">
@@ -345,7 +357,7 @@
                     <div class="pulse-circle"></div>
                     <div class="live-badge-text">
                         <span>Статус Сервера</span>
-                        <p>В разработке / Эпик близко</p>
+                        <p>В разработке / Скоро открытие</p>
                     </div>
                 </div>
             </div>
