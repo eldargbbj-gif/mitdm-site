@@ -3,210 +3,375 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIT DM | GTA V RP Server</title>
+    <title>MIT DM | Официальный сайт GTA V RP</title>
     <meta name="anypay-verification" content="4027329f0502e8cb157839b434a">
     
-    <!-- Подключаем красивый премиальный шрифт и иконки -->
+    <!-- Премиальные шрифты и иконки -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg-color: #0b0c10;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --text-main: #f5f5f7;
-            --text-secondary: #94a3b8;
-            --accent-color: #5865F2; /* Фирменный цвет Discord */
-            --accent-glow: rgba(88, 101, 242, 0.4);
+            --bg-dark: #050508;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --discord-color: #5865F2;
+            --text-white: #ffffff;
+            --text-gray: #94a3b8;
+            --glass-card: rgba(10, 11, 18, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.05);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--bg-dark);
+            color: var(--text-white);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Дорогие неоновые блики на заднем фоне */
-        body::before, body::after {
+        /* Анимированный живой фон (Кибер-пространство) */
+        .bg-wrapper {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #120d2b 0%, var(--bg-dark) 70%);
+        }
+
+        .nebula {
+            position: absolute;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            background: var(--accent-purple);
+            filter: blur(160px);
+            opacity: 0.12;
+            animation: floatNebula 20s infinite alternate ease-in-out;
+        }
+        .nebula-cyan {
+            top: -200px; right: -100px;
+            background: var(--accent-cyan);
+        }
+        .nebula-purple {
+            bottom: -200px; left: -100px;
+        }
+
+        @keyframes floatNebula {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(80px, 50px) scale(1.2); }
+        }
+
+        /* Верхнее навигационное меню (Header) */
+        header {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .brand {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 30%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-white);
+        }
+
+        .nav-links a::after {
             content: '';
             position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: var(--accent-color);
-            filter: blur(120px);
-            opacity: 0.15;
-            z-index: 0;
-        }
-        body::before { top: 10%; left: 15%; }
-        body::after { bottom: 10%; right: 15%; }
-
-        /* Основной контейнер-карточка (эффект стекла) */
-        .container {
-            position: relative;
-            z-index: 1;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 3rem 2.5rem;
-            border-radius: 24px;
-            width: 90%;
-            max-width: 480px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 1s ease-out;
+            width: 0; height: 2px;
+            bottom: -4px; left: 0;
+            background: var(--accent-cyan);
+            transition: width 0.3s;
         }
 
-        /* Стильное лого / название проекта */
-        .logo {
-            font-size: 2.5rem;
-            font-weight: 800;
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Главный экран (Hero Section) */
+        .hero {
+            max-width: 1200px;
+            margin: 4rem auto 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            min-height: 70vh;
+            gap: 4rem;
+        }
+
+        .hero-text h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
             letter-spacing: -1px;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .hero-text h1 span {
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .tagline {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 500;
-            margin-bottom: 2rem;
+        .hero-text p {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            max-width: 600px;
         }
 
-        /* Описание */
-        .description {
-            font-size: 1.05rem;
-            line-height: 1.6;
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
+        /* Новая ультимативная кнопка Discord */
+        .cta-wrapper {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
         }
 
-        /* Магнит для глаз: Премиальная кнопка Discord */
-        .btn-discord {
+        .btn-premium-discord {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
-            width: 100%;
-            padding: 1.1rem 2rem;
-            background: var(--accent-color);
-            color: #ffffff;
+            gap: 16px;
+            padding: 1.3rem 2.8rem;
+            background: linear-gradient(135deg, var(--discord-color) 0%, #404eed 100%);
+            color: var(--text-white);
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            border-radius: 14px;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 8px 24px var(--accent-glow);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(88, 101, 242, 0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            cursor: pointer;
             position: relative;
-            overflow: hidden;
         }
 
-        /* Эффект переливания глянца на кнопке */
-        .btn-discord::after {
-            content: '';
-            position: absolute;
-            top: 0; left: -50%;
-            width: 200%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
-            transform: skewX(-25deg);
-            transition: 0.75s;
+        .btn-premium-discord:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 50px rgba(88, 101, 242, 0.5);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
-        .btn-discord:hover::after {
-            left: 120%;
+        .btn-premium-discord i {
+            font-size: 1.5rem;
+            animation: spinIcon 6s infinite linear;
         }
 
-        .btn-discord:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 28px var(--accent-glow);
-            background: #6773f3;
-        }
-
-        .btn-discord:active {
-            transform: translateY(-1px);
-        }
-
-        .btn-discord i {
-            font-size: 1.3rem;
-        }
-
-        /* Статус сервера внизу (добавляет интерактивности) */
-        .server-status {
-            margin-top: 2rem;
-            display: inline-flex;
+        /* Дополнительная карточка статуса рядом */
+        .live-badge {
+            display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.85rem;
-            color: #10b981; /* Зеленый цвет */
-            background: rgba(16, 185, 129, 0.06);
-            padding: 6px 14px;
-            border-radius: 100px;
-            border: 1px solid rgba(16, 185, 129, 0.15);
+            gap: 12px;
+            background: var(--glass-card);
+            border: 1px solid var(--glass-border);
+            padding: 1.1rem 1.8rem;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
         }
 
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
+        .pulse-circle {
+            width: 10px; height: 10px;
             background: #10b981;
             border-radius: 50%;
-            animation: pulse 2s infinite;
+            box-shadow: 0 0 15px #10b981;
+            animation: pulseGlow 1.8s infinite;
         }
 
-        /* Анимации */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes pulseGlow {
+            0% { transform: scale(0.9); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 25px #10b981; }
+            100% { transform: scale(0.9); opacity: 0.6; }
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-            70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        .live-badge-text span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .live-badge-text p {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin: 0;
+            color: #10b981;
+        }
+
+        /* Сетка преимуществ (Features Section) */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .feature-card {
+            background: var(--glass-card);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 24px;
+            transition: all 0.4s;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(6, 182, 212, 0.2));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+
+        .feature-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.5px;
+        }
+
+        .feature-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Адаптивность для мобилок */
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                margin-top: 2rem;
+                gap: 2rem;
+            }
+            .hero-text h1 { font-size: 3rem; }
+            .hero-text p { margin: 0 auto 2.5rem auto; }
+            .cta-wrapper {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-premium-discord, .live-badge { width: 100%; justify-content: center; }
+            .features-grid { grid-template-columns: 1fr; margin: 3rem auto; }
+            header { flex-direction: column; gap: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="logo">MIT DM</div>
-        <div class="tagline">RAGE:MP GTA V Server</div>
-        
-        <p class="description">
-            Добро пожаловать на уникальный проект MIT DM. Испытай свои скиллы в динамичных сражениях, найди единомышленников и стань частью нашего мощного комьюнити.
-        </p>
-
-        <!-- Главная сочная кнопка привлечения внимания -->
-        <a href="https://discord.gg/67YCs7BSM5" target="_blank" class="btn-discord">
-            <i class="fa-brands fa-discord"></i>
-            Присоединиться к Discord
-        </a>
-
-        <!-- Плашка статуса -->
-        <div class="server-status">
-            <div class="pulse-dot"></div>
-            Проект в разработке / Скоро открытие
-        </div>
+    <!-- Живой задний фон -->
+    <div class="bg-wrapper">
+        <div class="nebula nebula-cyan"></div>
+        <div class="nebula nebula-purple"></div>
     </div>
+
+    <!-- Навигация -->
+    <header>
+        <div class="brand">MIT DM</div>
+        <ul class="nav-links">
+            <li><a href="#">Главная</a></li>
+            <li><a href="https://discord.gg/67YCs7BSM5" target="_blank">Сообщество</a></li>
+            <li><a href="#">О проекте</a></li>
+        </ul>
+    </header>
+
+    <!-- Главный блок -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Премиум<br>Сражения в <span>GTA V</span></h1>
+            <p>Добро пожаловать на MIT DM — ультимативную арену для ценителей динамичного Deathmatch геймплея на платформе RAGE:MP. Идеальная регистрация попаданий, лучшие комьюнити-турниры и топовый контингент.</p>
+            
+            <div class="cta-wrapper">
+                <a href="https://discord.gg/67YCs7BSM5" target="_blank" class="btn-premium-discord">
+                    <i class="fa-brands fa-discord"></i>
+                    Вступить в Discord
+                </a>
+                
+                <div class="live-badge">
+                    <div class="pulse-circle"></div>
+                    <div class="live-badge-text">
+                        <span>Статус Сервера</span>
+                        <p>В разработке / Эпик близко</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Сетка преимуществ -->
+    <section class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+            <h3>Максимальный FPS</h3>
+            <p>Уникальная оптимизация игрового мода и кастомных сборок. Выжми максимум кадров из своего ПК в любой перестрелке.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-crosshair"></i></div>
+            <h3>Perfect Hitreg</h3>
+            <p>Синхронизация и регистрация урона настроены на профессиональном киберспортивном уровне. Каждая пуля летит точно в цель.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <h3>Мощный Anti-Cheat</h3>
+            <p>Никаких читеров. Собственные алгоритмы защиты обеспечивают честную игру и равные условия для каждого стрелка.</p>
+        </div>
+    </section>
 
 </body>
 </html>
