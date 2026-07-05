@@ -139,7 +139,7 @@
             margin: 4rem auto 0 auto;
             padding: 0 2rem;
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
+            grid-template-columns: 1.4fr 0.6fr;
             align-items: center;
             min-height: 65vh;
             gap: 4rem;
@@ -168,35 +168,59 @@
             color: var(--text-gray);
             line-height: 1.7;
             margin-bottom: 3rem;
-            max-width: 600px;
+            max-width: 700px;
         }
 
-        /* Кнопка Discord */
+        /* Вызывающие большие кнопки на главном экране */
         .cta-wrapper {
             display: flex;
             gap: 1.5rem;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .btn-premium-discord {
             display: inline-flex;
             align-items: center;
             gap: 16px;
-            padding: 1.3rem 2.8rem;
+            padding: 1.3rem 2.5rem;
             background: linear-gradient(135deg, var(--discord-color) 0%, #404eed 100%);
             color: var(--text-white);
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 700;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(88, 101, 242, 0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+            box-shadow: 0 20px 40px rgba(88, 101, 242, 0.25), inset 0 1px 0 rgba(255,255,255,0.2);
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .btn-premium-discord:hover {
             transform: translateY(-5px);
-            box-shadow: 0 30px 50px rgba(88, 101, 242, 0.5);
+            box-shadow: 0 30px 50px rgba(88, 101, 242, 0.45);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Новая большая кнопка магазина сверху */
+        .btn-premium-shop {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            padding: 1.3rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, #6d28d9 100%);
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 1.15rem;
+            font-weight: 700;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.25), inset 0 1px 0 rgba(255,255,255,0.2);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .btn-premium-shop:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 50px rgba(139, 92, 246, 0.45);
             border-color: rgba(255, 255, 255, 0.3);
         }
 
@@ -301,7 +325,7 @@
             line-height: 1.6;
         }
 
-        /* Презентабельная секция О Проекте */
+        /* Секция О Проекте */
         .about-section {
             max-width: 1200px;
             margin: 4rem auto 4rem auto;
@@ -350,7 +374,7 @@
             font-weight: 700;
         }
 
-        /* СЕКЦИЯ МАГАЗИНА (НОВАЯ) */
+        /* СЕКЦИЯ МАГАЗИНА */
         .shop-section {
             max-width: 1200px;
             margin: 6rem auto 10rem auto;
@@ -388,7 +412,6 @@
             gap: 2rem;
         }
 
-        /* Пустая карточка товара для будущего заполнения */
         .shop-item {
             background: var(--glass-card);
             border: 1px solid var(--glass-border);
@@ -408,29 +431,41 @@
             box-shadow: 0 30px 60px rgba(6, 182, 212, 0.15);
         }
 
-        /* Заглушка под картинку товара */
+        /* Градиентные заглушки для випок */
         .item-image-placeholder {
             width: 100%;
             height: 160px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.05) 100%);
-            border: 1px dashed rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: var(--text-gray);
             gap: 12px;
             margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .item-image-placeholder i {
-            font-size: 2rem;
-            color: rgba(255, 255, 255, 0.2);
+        /* Цветовые стили под уровни вип */
+        .placeholder-silver {
+            background: linear-gradient(135deg, rgba(148, 163, 184, 0.1) 0%, rgba(148, 163, 184, 0.2) 100%);
+            color: #cbd5e1;
         }
+        .placeholder-silver i { color: #cbd5e1; drop-shadow: 0 0 10px rgba(203,213,225,0.4); }
+
+        .placeholder-gold {
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.1) 0%, rgba(234, 179, 8, 0.2) 100%);
+            color: #facc15;
+        }
+        .placeholder-gold i { color: #facc15; drop-shadow: 0 0 10px rgba(250,204,21,0.4); }
+
+        .placeholder-platinum {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(139, 92, 246, 0.2) 100%);
+            color: #22d3ee;
+        }
+        .placeholder-platinum i { color: #22d3ee; drop-shadow: 0 0 10px rgba(34,211,238,0.4); }
 
         .shop-item h3 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
             letter-spacing: -0.5px;
@@ -441,7 +476,7 @@
             font-size: 0.95rem;
             line-height: 1.5;
             margin-bottom: 2rem;
-            min-height: 45px;
+            min-height: 65px;
         }
 
         .item-footer {
@@ -464,13 +499,13 @@
         }
 
         .item-price p {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: var(--text-white);
             font-family: 'Orbitron', sans-serif;
         }
 
-        /* Стильная кнопка покупки */
+        /* Кнопка купить */
         .btn-buy {
             padding: 0.8rem 1.6rem;
             background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
@@ -493,7 +528,7 @@
             .hero { grid-template-columns: 1fr; text-align: center; margin-top: 2rem; }
             .hero-text h1 { font-size: 3rem; }
             .cta-wrapper { flex-direction: column; width: 100%; }
-            .btn-premium-discord, .live-badge { width: 100%; justify-content: center; }
+            .btn-premium-discord, .btn-premium-shop, .live-badge { width: 100%; justify-content: center; }
             .features-grid, .shop-grid { grid-template-columns: 1fr; }
             .about-container { grid-template-columns: 1fr; padding: 2.5rem; text-align: center; gap: 2rem; }
             .about-title h2 { font-size: 2.2rem; }
@@ -528,9 +563,15 @@
             <p>Ультимативная арена для ценителей динамичного Deathmatch геймплея на платформе RAGE:MP. Идеальная регистрация попаданий, лучшие комьюнити-турниры и топовый контингент.</p>
             
             <div class="cta-wrapper">
+                <!-- Две идентичные крутые кнопки -->
                 <a href="https://discord.gg/67YCs7BSM5" target="_blank" class="btn-premium-discord">
                     <i class="fa-brands fa-discord"></i>
                     Вступить в Discord
+                </a>
+
+                <a href="#shop" class="btn-premium-shop">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    Открыть Магазин
                 </a>
                 
                 <div class="live-badge">
@@ -565,7 +606,7 @@
         </div>
     </section>
 
-    <!-- Презентабельная секция О Проекте -->
+    <!-- Секция О Проекте -->
     <section class="about-section" id="about">
         <div class="about-container">
             <div class="about-title">
@@ -578,56 +619,56 @@
         </div>
     </section>
 
-    <!-- СЕКЦИЯ МАГАЗИНА -->
+    <!-- СЕКЦИЯ МАГАЗИНА (ВИП СТАТУСЫ) -->
     <section class="shop-section" id="shop">
         <div class="shop-header">
             <h2>Донат <span>Магазин</span></h2>
-            <p>Поддержите развитие проекта и получите эксклюзивные внутриигровые привилегии</p>
+            <p>Выберите подходящий уровень привилегий и доминируйте на аренах MIT DM</p>
         </div>
 
         <div class="shop-grid">
-            <!-- Товар 1 -->
+            <!-- Silver VIP -->
             <div class="shop-item">
-                <div class="item-image-placeholder">
-                    <i class="fa-solid fa-gem"></i>
-                    <span>Товар на стадии настройки</span>
+                <div class="item-image-placeholder placeholder-silver">
+                    <i class="fa-solid fa-medal" style="font-size: 2.5rem;"></i>
+                    <span style="font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Silver Tier</span>
                 </div>
-                <h3>Premium VIP</h3>
-                <div class="item-desc">Уникальный статус, выделение в табе, кастомные анимации и доступ к закрытому контенту.</div>
+                <h3>Silver VIP</h3>
+                <div class="item-desc">Базовый премиум-пакет: серебряный префикс в чате, увеличенный базовый опыт и доступ к стандартным скинам.</div>
                 <div class="item-footer">
                     <div class="item-price">
                         <span>Цена</span>
-                        <p>499 ₽</p>
+                        <p>50 ₽</p>
                     </div>
                     <a href="#" class="btn-buy">Купить</a>
                 </div>
             </div>
 
-            <!-- Товар 2 -->
+            <!-- Gold VIP -->
             <div class="shop-item">
-                <div class="item-image-placeholder">
-                    <i class="fa-solid fa-shirt"></i>
-                    <span>Товар на стадии настройки</span>
+                <div class="item-image-placeholder placeholder-gold">
+                    <i class="fa-solid fa-crown" style="font-size: 2.5rem;"></i>
+                    <span style="font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Gold Tier</span>
                 </div>
-                <h3>Custom Skin Pack</h3>
-                <div class="item-desc">Набор эксклюзивной премиальной одежды и редких скинов для вашего персонажа.</div>
+                <h3>Gold VIP</h3>
+                <div class="item-desc">Оптимальный выбор: золотой статус, выделение в списке игроков, доступ к кастомным анимациям и уникальному оружию.</div>
                 <div class="item-footer">
                     <div class="item-price">
                         <span>Цена</span>
-                        <p>299 ₽</p>
+                        <p>100 ₽</p>
                     </div>
                     <a href="#" class="btn-buy">Купить</a>
                 </div>
             </div>
 
-            <!-- Товар 3 -->
+            <!-- Platinum VIP -->
             <div class="shop-item">
-                <div class="item-image-placeholder">
-                    <i class="fa-solid fa-coins"></i>
-                    <span>Товар на стадии настройки</span>
+                <div class="item-image-placeholder placeholder-platinum">
+                    <i class="fa-solid fa-gem" style="font-size: 2.5rem;"></i>
+                    <span style="font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Platinum Tier</span>
                 </div>
-                <h3>Игровая Валюта</h3>
-                <div class="item-desc">Пакет внутриигровых поинтов для мгновенной разблокировки арен и кейсов.</div>
+                <h3>Platinum VIP</h3>
+                <div class="item-desc">Максимальный приоритет: платиновый кастомный тег, доступ ко всем закрытым аренам, эксклюзивные скины и участие в закрытых тестах.</div>
                 <div class="item-footer">
                     <div class="item-price">
                         <span>Цена</span>
