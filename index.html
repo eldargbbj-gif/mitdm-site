@@ -5,151 +5,208 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIT DM | GTA V RP Server</title>
     <meta name="anypay-verification" content="4027329f0502e8cb157839b434a">
+    
+    <!-- Подключаем красивый премиальный шрифт и иконки -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        :root {
+            --bg-color: #0b0c10;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f5f5f7;
+            --text-secondary: #94a3b8;
+            --accent-color: #5865F2; /* Фирменный цвет Discord */
+            --accent-glow: rgba(88, 101, 242, 0.4);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         body {
-            background-color: #0b0c10;
-            color: #c5c6c7;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow-x: hidden;
+            position: relative;
         }
 
+        /* Дорогие неоновые блики на заднем фоне */
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: 0;
+        }
+        body::before { top: 10%; left: 15%; }
+        body::after { bottom: 10%; right: 15%; }
+
+        /* Основной контейнер-карточка (эффект стекла) */
         .container {
+            position: relative;
+            z-index: 1;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 3rem 2.5rem;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 480px;
             text-align: center;
-            padding: 20px;
-            max-width: 600px;
-            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease-out;
         }
 
-        h1 {
-            font-size: 3.5rem;
+        /* Стильное лого / название проекта */
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: #fff;
-            text-shadow: 0 0 10px #00f2fe, 0 0 20px #00f2fe, 0 0 40px #00f2fe;
-            margin-bottom: 10px;
-            animation: glow 2s ease-in-out infinite alternate;
+            font-weight: 500;
+            margin-bottom: 2rem;
         }
 
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 10px #00f2fe, 0 0 20px #00f2fe, 0 0 30px #00f2fe;
-            }
-            to {
-                text-shadow: 0 0 15px #4facfe, 0 0 25px #4facfe, 0 0 50px #4facfe;
-            }
+        /* Описание */
+        .description {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
         }
 
-        p.subtitle {
-            font-size: 1.2rem;
-            color: #66fcf1;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(102, 252, 241, 0.1);
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 30px;
-            backdrop-filter: blur(5px);
-        }
-
-        .card h2 {
-            color: #fff;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .btn {
-            display: inline-block;
+        /* Магнит для глаз: Премиальная кнопка Discord */
+        .btn-discord {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
             width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            padding: 1.1rem 2rem;
+            background: var(--accent-color);
+            color: #ffffff;
             text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 14px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 24px var(--accent-glow);
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn-primary {
-            background: linear-gradient(45deg, #00f2fe, #4facfe);
-            color: #000;
-            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+        /* Эффект переливания глянца на кнопке */
+        .btn-discord::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -50%;
+            width: 200%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
+            transform: skewX(-25deg);
+            transition: 0.75s;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
+        .btn-discord:hover::after {
+            left: 120%;
         }
 
-        .btn-secondary {
-            background: transparent;
-            color: #66fcf1;
-            border: 2px solid #66fcf1;
+        .btn-discord:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px var(--accent-glow);
+            background: #6773f3;
         }
 
-        .btn-secondary:hover {
-            background: #66fcf1;
-            color: #000;
+        .btn-discord:active {
+            transform: translateY(-1px);
         }
 
-        footer {
-            margin-top: 40px;
+        .btn-discord i {
+            font-size: 1.3rem;
+        }
+
+        /* Статус сервера внизу (добавляет интерактивности) */
+        .server-status {
+            margin-top: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             font-size: 0.85rem;
-            color: #45f3ff;
-            opacity: 0.6;
+            color: #10b981; /* Зеленый цвет */
+            background: rgba(16, 185, 129, 0.06);
+            padding: 6px 14px;
+            border-radius: 100px;
+            border: 1px solid rgba(16, 185, 129, 0.15);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Тот самый светящийся логотип -->
-        <h1>Mit DM</h1>
-        <p class="subtitle">RAGE:MP GTA V Project</p>
+        <div class="logo">MIT DM</div>
+        <div class="tagline">RAGE:MP GTA V Server</div>
+        
+        <p class="description">
+            Добро пожаловать на уникальный проект MIT DM. Испытай свои скиллы в динамичных сражениях, найди единомышленников и стань частью нашего мощного комьюнити.
+        </p>
 
-        <div class="card">
-            <h2>Добро пожаловать на лучший DM сервер</h2>
-            <p>Уникальное комьюнити, отзывчивая администрация и постоянные капты/замесы. Прокачай свой скилл стрельбы вместе с нами!</p>
+        <!-- Главная сочная кнопка привлечения внимания -->
+        <a href="https://discord.gg/67YCs7BSM5" target="_blank" class="btn-discord">
+            <i class="fa-brands fa-discord"></i>
+            Присоединиться к Discord
+        </a>
+
+        <!-- Плашка статуса -->
+        <div class="server-status">
+            <div class="pulse-dot"></div>
+            Проект в разработке / Скоро открытие
         </div>
-
-        <!-- Кнопки управления -->
-        <a href="#" class="btn btn-primary" id="copy-btn" onclick="copyIP()">Скопировать IP сервера</a>
-        <a href="#donate" class="btn btn-secondary">Магазин Доната</a>
-        <a href="https://discord.gg/твой_инвайт" target="_blank" class="btn btn-secondary" style="border-color: #5865F2; color: #5865F2;">Наш Discord</a>
-
-        <footer>
-            &copy; 2026 MIT DM. All rights reserved.
-        </footer>
     </div>
 
-    <script>
-        function copyIP() {
-            const ip = "mitdm.xyz:22005"; // Замени на реальный IP твоего сервера позже
-            navigator.clipboard.writeText(ip);
-            const btn = document.getElementById('copy-btn');
-            btn.innerText = "IP скопирован!";
-            setTimeout(() => {
-                btn.innerText = "Скопировать IP сервера";
-            }, 2000);
-        }
-    </script>
 </body>
 </html>
